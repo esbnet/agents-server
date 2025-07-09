@@ -25,9 +25,9 @@ app.get('/health', () => {
   return 'OK'
 })
 
+app.register(createRoomsRoute)
 app.register(getRoomsRoute)
 app.register(getRoomByIdRoute)
-app.register(createRoomsRoute)
 app.register(getRoomQuestionsRoute)
 app.register(createQuestionRoute)
 

@@ -12,8 +12,7 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
           id: z.string()
         }),
         body: z.object({
-          question: z.string().min(3),
-          answer: z.string().optional()
+          question: z.string().min(3)
         })
       }
     },
@@ -23,7 +22,7 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
 
       const result = await db
         .insert(schema.questions)
-        .values({ question, roomId: id, answer: null })
+        .values({ question, roomId: id })
         .returning({
           id: schema.questions.id
         })
