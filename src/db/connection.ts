@@ -7,7 +7,7 @@ export const sql = postgres(env.DATABASE_URL)
 export const db = drizzle(sql, { schema, casing: 'snake_case' })
 
 const result =
-  await sql`SELECT '✔ Database connection established successfully! 🌐' as message`
+    await sql`SELECT '✔ Database connection established successfully! 🌐' as message`
 
 // biome-ignore lint/suspicious/noConsole: used only for dev
 console.log(result[0].message)

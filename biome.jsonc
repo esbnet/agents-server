@@ -1,8 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
-  "extends": [
-    "ultracite"
-  ],
+  "extends": ["ultracite"],
   "formatter": {
     "lineWidth": 80
   },
@@ -11,7 +9,8 @@
       "semicolons": "asNeeded",
       "trailingCommas": "none",
       "quoteStyle": "single",
-      "bracketSpacing": true
+      "bracketSpacing": true,
+      "indentWidth": 4
     }
-  },
+  }
 }

@@ -4,28 +4,28 @@ import { db } from '../../db/connection.ts'
 import { schema } from '../../db/schema/index.ts'
 
 export const createRoomsRoute: FastifyPluginCallbackZod = (app) => {
-  app.post(
-    '/rooms',
-    {
-      schema: {
-        body: z.object({
-          name: z.string().min(3),
-          description: z.string().optional()
-        })
-      }
-    },
-    async (request, reply) => {
-      const { name, description } = request.body
-      const result = await db
-        .insert(schema.rooms)
-        .values({ name, description })
-        .returning({
-          id: schema.rooms.id
-        })
+    app.post(
+        '/rooms',
+        {
+            schema: {
+                body: z.object({
+                    name: z.string().min(3),
+                    description: z.string().optional()
+                })
+            }
+        },
+        async (request, reply) => {
+            const { name, description } = request.body
+            const result = await db
+                .insert(schema.rooms)
+                .values({ name, description })
+                .returning({
+                    id: schema.rooms.id
+                })
 
-      return reply.status(201).send({
-        id: result[0].id
-      })
-    }
-  )
+            return reply.status(201).send({
+                id: result[0].id
+            })
+        }
+    )
 }

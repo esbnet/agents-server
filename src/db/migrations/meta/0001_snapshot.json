@@ -1,11 +1,11 @@
 {
-  "id": "c494ebef-7106-45f6-b747-565aeb916acd",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "707efcd5-4ac0-46a2-ae84-c7f9aa0a2edc",
+  "prevId": "c494ebef-7106-45f6-b747-565aeb916acd",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.audio-chunks": {
-      "name": "audio-chunks",
+    "public.audio_-chunks": {
+      "name": "audio_-chunks",
       "schema": "",
       "columns": {
         "id": {
@@ -43,9 +43,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "audio-chunks_room_id_rooms_id_fk": {
-          "name": "audio-chunks_room_id_rooms_id_fk",
-          "tableFrom": "audio-chunks",
+        "audio_-chunks_room_id_rooms_id_fk": {
+          "name": "audio_-chunks_room_id_rooms_id_fk",
+          "tableFrom": "audio_-chunks",
           "tableTo": "rooms",
           "columnsFrom": ["room_id"],
           "columnsTo": ["id"],
