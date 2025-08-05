@@ -11,14 +11,23 @@ export const getRoomByIdRoute: FastifyPluginCallbackZod = (app) => {
         {
             schema: {
                 params: z.object({
-                    id: z.string()
+                    roomId: z.string()
                 })
             }
         },
-        async (request) => {
-            const { id } = request.params
-
-            return await db.select().from(schema.rooms).where(eq(rooms.id, id))
+        async (request, reply) => {
+            try {
+                const { roomId } = request.params
+                const room = await db.select().from(schema.rooms).where(eq(rooms.id, roomId))
+                
+                if (room.length === 0) {
+                    return reply.status(404).send({ error: 'Room not found' })
+                }
+                
+                return room[0]
+            } catch (error) {
+                return reply.status(500).send({ error: 'Failed to fetch room' })
+            }
         }
     )
 }

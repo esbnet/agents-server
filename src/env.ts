@@ -8,4 +8,10 @@ const envSchema = z.object({
     GOOGLE_GENAI_API_KEY: z.string()
 })
 
-export const env = envSchema.parse(process.env)
+export const env = (() => {
+    try {
+        return envSchema.parse(process.env)
+    } catch (error) {
+        throw new Error(`Invalid environment variables: ${error}`)
+    }
+})()

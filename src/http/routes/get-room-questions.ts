@@ -14,21 +14,25 @@ export const getRoomQuestionsRoute: FastifyPluginCallbackZod = (app) => {
                 })
             }
         },
-        async (request) => {
-            const { roomId } = request.params
+        async (request, reply) => {
+            try {
+                const { roomId } = request.params
 
-            const room = await db
-                .select({
-                    id: schema.questions.id,
-                    question: schema.questions.question,
-                    answer: schema.questions.answer,
-                    createdAt: schema.questions.createdAt
-                })
-                .from(schema.questions)
-                .where(eq(schema.questions.roomId, roomId))
-                .orderBy(desc(schema.questions.createdAt))
+                const questions = await db
+                    .select({
+                        id: schema.questions.id,
+                        question: schema.questions.question,
+                        answer: schema.questions.answer,
+                        createdAt: schema.questions.createdAt
+                    })
+                    .from(schema.questions)
+                    .where(eq(schema.questions.roomId, roomId))
+                    .orderBy(desc(schema.questions.createdAt))
 
-            return room
+                return questions
+            } catch (error) {
+                return reply.status(500).send({ error: 'Failed to fetch questions' })
+            }
         }
     )
 }

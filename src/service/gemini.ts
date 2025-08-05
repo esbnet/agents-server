@@ -5,11 +5,12 @@ const gemini = new GoogleGenAI({
     apiKey: env.GOOGLE_GENAI_API_KEY
 })
 
-const model = 'gemini-2.5-flash'
+const GEMINI_MODEL = 'gemini-2.5-flash'
+const EMBEDDING_MODEL = 'text-embedding-004'
 
 export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
     const response = await gemini.models.generateContent({
-        model,
+        model: GEMINI_MODEL,
         contents: [
             {
                 text: 'Transcreva o áudio para português do Brasil. Seja preciso e natural na transcrição. Mantenha a pontuação adequada e divida o texto em parágrafos quando for apropriado.'
@@ -32,7 +33,7 @@ export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
 
 export async function generateEmbeddings(text: string) {
     const response = await gemini.models.embedContent({
-        model: 'text-embedding-004',
+        model: EMBEDDING_MODEL,
         contents: [{ text }],
         config: {
             taskType: 'RETRIEVAL_DOCUMENT'
@@ -71,7 +72,7 @@ export async function generateAnswer(
   `.trim()
 
     const response = await gemini.models.generateContent({
-        model,
+        model: GEMINI_MODEL,
         contents: [
             {
                 text: prompt
