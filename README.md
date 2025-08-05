@@ -23,17 +23,20 @@ Sistema de salas inteligentes com transcrição de áudio e respostas automatiza
 ## ⚙️ Configuração do Ambiente
 
 1. **Clone o repositório**
+
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/esbnet/agents-server
 cd server
 ```
 
 2. **Configure as variáveis de ambiente**
+
 ```bash
 cp .env.example .env
 ```
 
 Edite o arquivo `.env` com suas configurações:
+
 ```env
 # HTTP
 PORT=3333
@@ -48,6 +51,7 @@ GOOGLE_GENAI_API_KEY=sua_chave_api_aqui
 ```
 
 3. **Instale as dependências**
+
 ```bash
 npm install
 ```
@@ -55,11 +59,13 @@ npm install
 ## 🐳 Setup com Docker
 
 1. **Inicie o banco de dados PostgreSQL**
+
 ```bash
 docker-compose up -d
 ```
 
 2. **Execute as migrações e seed do banco**
+
 ```bash
 npm run db:reset
 ```
@@ -67,11 +73,13 @@ npm run db:reset
 ## 🏃‍♂️ Executando o Projeto
 
 ### Desenvolvimento
+
 ```bash
 npm run dev
 ```
 
 ### Produção
+
 ```bash
 npm start
 ```
@@ -81,18 +89,22 @@ O servidor estará disponível em `http://localhost:3333`
 ## 📚 API Endpoints
 
 ### Salas (Rooms)
+
 - `POST /rooms` - Criar nova sala
 - `GET /rooms` - Listar todas as salas
 - `GET /rooms/:id` - Obter sala por ID
 
 ### Perguntas (Questions)
+
 - `POST /rooms/:roomId/questions` - Criar pergunta em uma sala
 - `GET /rooms/:roomId/questions` - Listar perguntas de uma sala
 
 ### Áudio
+
 - `POST /rooms/:roomId/audio` - Upload e transcrição de áudio
 
 ### Health Check
+
 - `GET /health` - Verificar status da API
 
 ## 🗄️ Estrutura do Banco de Dados
@@ -139,11 +151,13 @@ src/
 ## 🤖 Funcionalidades de IA
 
 ### Transcrição de Áudio
+
 - Upload de arquivos de áudio
 - Transcrição automática usando Gemini AI
 - Armazenamento com embeddings vetoriais
 
 ### Sistema de Perguntas Inteligentes
+
 - Busca semântica usando pgvector
 - Respostas baseadas no conteúdo transcrito
 - Contexto educacional otimizado
@@ -161,6 +175,7 @@ src/
 ## 🚀 Deploy
 
 ### Docker
+
 ```bash
 # Build da imagem
 docker build -t nlw-agents-server .
@@ -170,6 +185,7 @@ docker run -p 3333:3333 --env-file .env nlw-agents-server
 ```
 
 ### Variáveis de Ambiente para Produção
+
 - Configure `NODE_ENV=production`
 - Use credenciais seguras para o banco
 - Configure CORS para domínios específicos
